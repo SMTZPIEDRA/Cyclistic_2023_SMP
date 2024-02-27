@@ -1,0 +1,776 @@
+---
+title: 'Caso práctico: ¿Cómo lograr el éxito rápido de un negocio de bicicletas compartidas?'
+author: "Sergio Martínez de la Piedra"
+output:
+  pdf_document: default
+  word_document: default
+  html_notebook: default
+---
+
+### Introducción
+
+<div style="text-align: justify">
+
+En el presente archivo, se redacta el caso práctico de análisis de datos de bicicletas compartidas, parte de la Certificación profesional de Análisis de Datos de Google, en este trabajo se realizan tareas típicas de un analista de datos JR. El ejercicio consta de simular que trabajamos para la empresa "Cyclistic" donde se te asigna una tarea en la cual se siguen los siguientes pasos: preguntar, preparar, procesar, analizar, compartir y actuar.
+
+Todo el proceso se acompaña de una, guia de preguntas que ayudan a resolver la tarea en cuestión en el camino correcto
+
+### Escenario
+
+
+Eres un analista de datos júnior que trabaja en el equipo de analistas de marketing de Cyclistic, una empresa de bicicletas compartidas de Chicago. La directora de marketing cree que el éxito futuro de la empresa depende de maximizar la cantidad de membresías anuales. Por lo tanto, tu equipo quiere entender qué diferencias existen en el uso de las bicicletas Cyclistic entre los ciclistas ocasionales y los miembros anuales. A través de estos conocimientos, tu equipo diseñará una nueva estrategia de marketing para convertir a los ciclistas ocasionales en miembros anuales. Sin embargo, antes de eso, los ejecutivos de Cyclistic deben aprobar tus recomendaciones; por eso, debes respaldar tu propuesta con una visión convincente de los datos y visualizaciones profesionales de los mismos.
+
+
+Personajes y equipos
+
+●	Cyclistic: Un programa de bicicletas compartidas que incluye 5,800 bicicletas y 600 estaciones. Cyclistic se destaca por ofrecer también bicicletas reclinadas, triciclos manuales y bicicletas de carga que ofrecen un uso más inclusivo de las bicicletas compartidas para las personas con discapacidad y los ciclistas que no pueden utilizar una bicicleta estándar de dos ruedas. La mayoría de los ciclistas eligen las bicicletas tradicionales, alrededor de un 8% de los ciclistas usan las opciones asistidas. Los usuarios de Cyclistic son más propensos a utilizar la bicicleta para recreación, pero alrededor del 30% la utiliza para ir al trabajo cada día.
+
+●	Lily Moreno: La directora de marketing y tu gerente. Moreno es responsable del desarrollo de campañas e iniciativas para promover el programa de bicicletas compartidas. Las campañas pueden incluir correo electrónico, redes sociales y otros canales.
+
+●	Equipo de análisis computacional de datos de marketing de Cyclistic: Un equipo de analistas de datos que se encargan de recopilar, analizar e informar datos que ayudan a conducir la estrategia de marketing de Cyclistic. Te incorporaste a este equipo hace seis meses y te has dedicado no solo a conocer la misión y las metas de negocios de Cyclistic, sino también a ver cómo puedes ayudar a Cyclistic a lograrlo, desde tu posición de analista de datos júnior.
+
+●	Equipo ejecutivo de Cyclistic: El equipo ejecutivo, sumamente detallista, decidirá si aprueba el programa de marketing recomendado.
+
+
+
+### Sobre la empresa
+
+
+
+En 2016, Cyclistic lanzó una exitosa oferta de bicicletas compartidas. Desde entonces, el programa creció hasta alcanzar una flota de 5,824 bicicletas georreferenciadas y bloqueadas en una red de 692 estaciones en toda Chicago. Las bicicletas se pueden desbloquear desde una estación y devolverse en cualquier otra estación del sistema en cualquier momento.
+
+Hasta ahora, la estrategia de marketing de Cyclistic se basaba en la construcción de un reconocimiento de marca general y en atraer a amplios segmentos de consumidores. Uno de los enfoques que ayudó a hacer esto posible fue la flexibilidad de sus planes de precios: pases de un solo viaje, pases de un día completo y membresías anuales. A los clientes que compran pases de un solo viaje o pases de un día completo se los llama ciclistas ocasionales. Los clientes que compran membresías anuales se llaman miembros de Cyclistic.
+
+Los analistas financieros de Cyclistic llegaron a la conclusión de que los miembros anuales son mucho más rentables que los ciclistas ocasionales. Aunque la flexibilidad de precios ayuda a Cyclistic a atraer más clientes, Moreno cree que maximizar el número de miembros anuales será clave para el crecimiento futuro. En lugar de crear una campaña de marketing que apunte a todos los clientes nuevos, Moreno cree que hay muchas posibilidades de convertir a los ciclistas ocasionales en miembros. Ella señala que los ciclistas ocasionales ya conocen el programa de Cyclistic y han elegido a Cyclistic para sus necesidades de movilidad.
+
+Moreno estableció una meta clara: Diseñar estrategias de marketing orientadas a convertir a los ciclistas ocasionales en miembros anuales. Sin embargo, para hacer eso, el equipo de analistas de marketing necesita entender mejor cómo difieren los miembros anuales y los ciclistas ocasionales, por qué los ciclistas ocasionales comprarían una membresía y cómo los medios digitales podrían afectar sus tácticas de marketing. Moreno y su equipo están interesados en analizar los datos históricos de viajes en bicicleta de Cyclistic para identificar tendencias.
+
+
+### Preguntar
+
+
+**¿Cuál es el problema que intentas resolver?**
+
+Encontrar y analizar las diferencias que existen en las tendencias de los datos generados por el uso de bicicletas por parte de los ciclistas ocasionales y de los socios anuales y así las personas de marketing de la empresa puedan ver como se pueden capturar nuevos clientes de membresía para la empresa
+
+**¿Cómo tus conocimientos pueden impulsar las decisiones empresariales?**
+
+Con gráficos que describan de manera precisa cuáles son las diferencias en las tendencias de uso entre ambos tipos de usuarios, analizando el comportamiento de uso de los diferentes tipos de usuarios, y generando conclusiones al respecto
+
+
+**Identificar la tarea empresarial**
+
+La tarea empresarial será que con los datos dados se pueda generar un reporte donde se alcance visualizar en que difieren las tendencias de uso de los dos tipos de consumidores del producto, de manera que este análisis oriente a los agentes de marketing a elegir estrategias que permitan convertir los ciclistas ocasionales en socios anuales.
+
+**Considerar a los interesados clave**
+
+Para esta tarea los principales son: **el equipo de análisis computacional de datos de marketing de Cyclistic, Lily Moreno, e****quipo ejecutivo de Cyclistic**
+
+
+
+### Preparar 
+
+
+**¿Dónde se ubican tus datos?**
+
+Los datos han sido proporcionados por Motivate International Inc. bajo la licencia ubicada en el siguiente lazo: https://divvybikes.com/data-license-agreement. Se a la aprovechando para agradecer a la empresa por proporcionar los datos para el presente proyecto, posteriormente fueron descargados y resguardados en una carpeta. Finalmente, por seguridad se realizó una copia de la carpeta con los datos originales donde se llevará a cabo la manipulación de los datos.
+
+
+**¿Cómo están organizados los datos?**
+
+Los datos son estructurados y se encuentran organizados en tablas realizadas en Excel en archivos tipo CSV.  Se trata de doce archivos, cada uno con un total de 13 columnas con información sobre el tipo de bicicleta, nombre, identificación y coordenadas tanto de la estación de inicio como de fin, fecha y hora de inicio y fin de la actividad, y tipo de usuario (socio anual o ciclista ocasional), y un gran número de filas diferente para cada uno de los doce archivos.
+
+**¿Hay problemas con el sesgo o la credibilidad de estos datos? **
+
+Se asume que los datos son confiables y originales dado que la fuente de donde provienen es primaria y confiable.  Ellos también son actuales dado a que son datos de los últimos doce meses. Son citados pues son datos abiertos.  A pesar de que existen muchos registros en blanco, se cuentan con la información necesaria para el análisis, por ende los datos son íntegros.  La fuente de donde provienen los datos es [https://divvybikes.com](https://divvybikes.com/data-license-agreement)
+
+**¿Cómo estás abordando la autorización, la privacidad, la seguridad y la accesibilidad?**
+
+Se está haciendo uso de datos de primera fuente, abiertos, con una licencia de autorización de los mismos. La privacidad se esta respetando, dado a que no se hace uso de los datos personales de los clientes. En cuanto a la seguridad de los datos, estos se tratan de datos publicos.  El análisis de los mismos se estará protegiendo por medio de archivos con código de acceso.   
+
+**Almacenamiento de datos en R y acomodo **
+
+
+```{r}
+archivos_csv <- list.files(pattern = ".csv")
+
+# lista para almacenar los dataframes
+lista_dataframes <- list()
+
+# lectura y almacenamiento de cada archivo en la lista
+for (archivo in archivos_csv) {
+  df <- read.csv(archivo)
+  lista_dataframes[[archivo]] <- df
+}
+
+# Unir todos los dataframes en uno solo
+df_testing <- do.call(rbind, lista_dataframes)
+```
+
+**Librerias requeridas **
+
+- lubridate (Manejo de datos de fechas)
+- skim (Resumen estadístico de variables)
+- scales (Ajuste de etiquetas y visualizaciones gráficas)
+- dplyr (Gramática y manipulacion de datos)
+- ggplot2 (Creación de gráficos)
+- tidyverse (Limpieza y transformación de datos)
+- summarytools (resumen estadístico de variables)
+
+
+Skim proporciona un resumen de nuestras variables a analizar, por lo que ejecutamos lo siguiente encontrando los siguientes resultados
+
+
+```{r}
+library(skimr)
+
+skim(df_testing)
+```
+El análisis realizado con Skim,  muestra como es que se comportan las variables,  que existen algunos datos que están completamente vacíos y tienen datos nulos, ejemplo de start_station_name, end_station_name, start_station_id, end_station_id. Estos mismos representan al menos 15% de datos faltantes, por lo que no se tomara en cuenta para realizar un análisis de uso.
+
+Si bien, están relacionados con el uso, no es posible tomarlos como medida de certeza que resuelva nuestra pregunta inicial.
+
+Se determinan las variables que no son útiles para nuestro análisis, ride_id que es un dato único que indica el identificador del viaje registrado y no se puede tabular ni contar. Así mismo con los datos de del final del viaje.
+
+
+También se dictaminan las variables utilizar para el reporte, datos como ended_at,rideable_type,started_at, y principalmente member_casual se encuentran íntegros y completos, sin espacios en blanco, puesto que son datos categóricos y de fechas.
+
+Algunos de los datos que también son descartados son las columnas de latitud y longitud, pues están en relación con los nombres de las estaciones de inicio y final y no se encuentran completos, pese a que representan un porcentaje muy pequeño (<1%) se opta por no eliminar ninguna fila que contenga esa columna vacía.
+
+Con esto en pie, se procede a borrar las columnas que no son requeridas para el análisis de uso.
+
+
+```{r}
+df_testing <- df_testing[, !(names(df_testing) %in% c("end_station_name","start_station_name", "end_station_id","ride_id","end_lat","end_lng","start_station_id","start_lat","start_lng"))]
+
+
+print(head(df_testing))
+```
+### Procesar 
+
+
+Una vez obtenido este dataframe, se inicia con la transformación de datos, para ello se tienen en cuenta las siguientes pautas:
+
+Los datos de fecha en formato POSIXct como started_t pueden ser aprovechadas de mejor manera obteniendo datos puntuales sobre ella, ya que nos otorgan de la fecha de inicio de viaje, la hora que inicio y el día de la semana en el que fue, así mismo con ended_at que también proporciona una fecha que ayuda a realizar cálculos sobre los datos
+
+Se traspasa la columna de formato chr a POSIXct de inicio como la de final
+
+```{r}
+library(lubridate)
+df_testing$started_at <- ymd_hms(df_testing$started_at)
+df_testing$ended_at <- ymd_hms(df_testing$ended_at)
+
+head(df_testing[, c("started_at", "ended_at")])
+```
+
+Se calcula el día de la semana donde se ha iniciado el viaje y se coloca otra columna
+
+
+```{r}
+
+df_testing$day_of_week <- weekdays(df_testing$started_at)
+
+head(df_testing[, c("started_at", "day_of_week")])
+```
+También se realiza la separación para el mes en el que haya sido el viaje
+
+```{r}
+# nueva columna month con el nombre del mes
+df_testing$month <- months(df_testing$started_at)
+
+head(df_testing[, c("started_at", "month")])
+```
+
+Un dato muy importante a tener en cuenta es la duración de viaje, así que procedemos a realizarlo de la siguiente forma, 
+
+```{r}
+difference <- as.numeric(df_testing$ended_at - df_testing$started_at)
+df_testing$ride_length <- format(as.POSIXct(difference, origin = "1970-01-01", tz = "UTC"), format = "%H:%M:%S")
+
+# Verificar los cambios
+head(df_testing[, c("started_at","ride_length")])
+```
+
+Como ride_length quedo como formato chr se procede tambien a convertirlo al formato correcto POSIXct 
+
+
+```{r}
+df_testing$ride_length <- as.POSIXct(df_testing$ride_length, format="%H:%M:%S")
+
+head(df_testing[, c("started_at","ride_length")])
+
+```
+se calcula el tiempo de viaje en segundos para su mejor manipulación y se añade una columna adicional
+
+
+```{r}
+df_testing$ride_length_segundos <- as.numeric(difftime(df_testing$ride_length, trunc(df_testing$ride_length, "days"), units = "secs"))
+
+head(df_testing[, c("ride_length","ride_length_segundos")])
+```
+
+
+### Analizar
+
+Se comienza a trabajar con nuestros datos transformados, en este apartado se obtienen los cálculos y conteos acerca de las variables categóricas
+
+Conteo de clientes:
+
+```{r}
+library(dplyr)
+
+# Crear el dataframe de conteo totales
+conteo_totales <- df_testing %>%
+  group_by(member_casual) %>%
+  summarise(Total = n())
+
+# Mostrar el dataframe de conteo totales
+print(conteo_totales)
+```
+Tipos de bicicleta usados por clientes
+
+
+```{r}
+# Crear el dataframe de conteo totales
+conteo_bikes <- df_testing %>%
+  group_by(rideable_type) %>%
+  summarise(Total = n())
+
+print(conteo_bikes)
+```
+
+
+Desglose, tipos de bicicletas según el tipo de cliente
+
+
+```{r}
+library(dplyr)
+library(tidyr)
+
+# calculo de conteos por tipo de bicicleta y tipo de cliente
+conteo_bikes_user <- df_testing %>%
+  group_by(rideable_type, member_casual) %>%
+  summarise(conteo = n()) %>%
+  pivot_wider(names_from = member_casual, values_from = conteo, values_fill = 0)
+
+print(conteo_bikes_user)
+
+```
+
+Cantidad de clientes por mes 
+
+
+```{r}
+library(dplyr)
+library(tidyr)
+
+# calculo de conteos por tipo de bicicleta y tipo de cliente
+conteo_month_user <- df_testing %>%
+  group_by(month, member_casual) %>%
+  summarise(conteo = n()) %>%
+  pivot_wider(names_from = member_casual, values_from = conteo, values_fill = 0)
+
+print(conteo_month_user)
+
+```
+
+Cantidad de clientes por día de la semana 
+
+
+```{r}
+# calculo de conteos por tipo de bicicleta y tipo de cliente
+conteo_day_user <- df_testing %>%
+  group_by(day_of_week, member_casual) %>%
+  summarise(conteo = n()) %>%
+  pivot_wider(names_from = member_casual, values_from = conteo, values_fill = 0)
+
+print(conteo_day_user)
+
+```
+Conteos por hora de inicio de viaje segun cliente o miembro
+
+```{r}
+library(lubridate)
+
+
+# creación de dataframe con los conteos por rango de hora y tipo de miembro
+conteos_por_rango_p <- df_testing %>%
+  mutate(rango_hora = cut(hour(started_at), breaks = seq(0, 24, by = 4), include.lowest = TRUE, right = FALSE)) %>%
+  group_by(rango_hora, member_casual) %>%
+  summarise(conteo = n(), .groups = 'drop') %>%
+  pivot_wider(names_from = member_casual, values_from = conteo, names_prefix = "conteo_") %>%
+  mutate(across(starts_with("conteo_"), replace_na, replace = 0))
+
+# agregar columna con el rango de hora
+conteos_por_rango_p$conteo_range <- gsub("\\[|\\)", "", conteos_por_rango_p$rango_hora)
+
+# organizacion de las columnas
+conteos_por_rango_p <- conteos_por_rango_p[, c("conteo_range", "conteo_member", "conteo_casual")]
+
+# verificar
+
+print(conteos_por_rango_p)
+```
+Calculo de afluencia por hora del día para el mes de Agosto
+
+```{r}
+library(lubridate)
+library(dplyr)
+library(tidyr)
+
+# Imprimir el número total de filas antes del filtro (esta verificación se añadio debido a un error en el filtrado)
+cat("Número total de filas antes del filtro:", nrow(df_testing))
+
+# Crear un nuevo dataframe con los conteos por rango de hora y tipo de miembro
+conteos_por_rango_m <- df_testing %>%
+  filter(month == "agosto", day_of_week %in% c("lunes", "martes", "miércoles", "jueves", "viernes")) %>%  # Filtrar por enero y días de lunes a viernes
+  mutate(rango_hora = cut(hour(started_at), breaks = seq(0, 24, by = 1), include.lowest = TRUE, right = FALSE)) %>%
+  group_by(rango_hora, member_casual) %>%
+  summarise(conteo = n(), .groups = 'drop') %>%
+  pivot_wider(names_from = member_casual, values_from = conteo, names_prefix = "conteo_") %>%
+  mutate(across(starts_with("conteo_"), replace_na, replace = 0))
+
+# Imprimir el dataframe completo
+print(conteos_por_rango_m)
+
+# Verificar si el dataframe no está vacío antes de seleccionar las columnas
+if (nrow(conteos_por_rango_m) > 0) {
+  # Agregar una columna con el rango de hora
+  conteos_por_rango_m$conteo_range <- gsub("\\[|\\)", "", conteos_por_rango_m$rango_hora)
+
+  # Reorganizar las columnas
+  conteos_por_rango_m <- conteos_por_rango_m %>%
+    select(conteo_range, matches("conteo_"))
+
+  # Imprimir el nuevo dataframe
+  print(conteos_por_rango_m)
+} else {
+  cat("El dataframe está vacío después de aplicar el filtro.")
+}
+
+
+```
+
+
+Promedio de duración de viaje por mes y tipo de cliente
+
+
+```{r}
+promedios_duracion_d <- df_testing %>%
+  group_by(month, member_casual) %>%
+  summarise(promedio_duracion = mean(ride_length_segundos)) %>%
+  pivot_wider(names_from = member_casual, values_from = promedio_duracion) %>%
+  mutate(across(c(member, casual), ~as.POSIXct(round(., 0), origin = "1970-01-01", tz = "UTC")))
+print(promedios_duracion_d)
+
+```
+
+Promedio de duración por día 
+
+
+```{r}
+
+# agrupación por semana y tipo de miembro
+promedios_duracion_day <- df_testing %>%
+  group_by(day_of_week, member_casual) %>%
+  # calculo de promedio 
+  summarise(promedio_duracion = mean(ride_length_segundos)) %>%
+  pivot_wider(names_from = member_casual, values_from = promedio_duracion) %>%
+  
+  #ajuste al formato
+  mutate(across(c(member, casual), ~as.POSIXct(round(., 0), origin = "1970-01-01", tz = "UTC")))
+
+
+print(promedios_duracion_day)
+```
+
+Distribucion de la duracion de viaje total 
+
+
+```{r}
+library(dplyr)
+library(tidyr)
+library(lubridate)
+
+# creación de dataframe con los conteos por rango de duración de viaje y tipo de miembro
+conteos_por_rango <- df_testing %>%
+  mutate(rango_duracion = cut(ride_length_segundos,
+                              breaks = c(0, 300, 600, 1200, 2400, Inf),
+                              labels = c("0-5 min", "5-10 min", "10-20 min", "20-40 min", "> 1 hr"),
+                              include.lowest = TRUE,
+                              right = TRUE)) %>%
+  group_by(rango_duracion, member_casual) %>%
+  summarise(conteo = n(), .groups = 'drop') %>%
+  pivot_wider(names_from = member_casual, values_from = conteo, names_prefix = "conteo_") %>%
+  mutate(across(starts_with("conteo_"), replace_na, replace = 0))
+
+# agregar una columna con el rango de duración
+conteos_por_rango$conteo_range <- conteos_por_rango$rango_duracion
+
+# organizar las columnas
+conteos_por_rango <- conteos_por_rango[, c("conteo_range", "conteo_member", "conteo_casual")]
+
+# verificar
+print(conteos_por_rango)
+```
+A modo de apoyo en interpretación de los gráficos de análisis de uso de clientes, se obtiene el resumen de las variables de duración
+
+```{r}
+library(dplyr)
+library(summarytools)
+
+
+# creación de dataframe para almacenar las estadísticas descriptivas
+analisis_ride_length <- df_testing %>%
+  group_by(member_casual) %>%
+  summarise(
+    media = format(as.POSIXct(mean(ride_length_segundos, na.rm = TRUE), origin = "1970-01-01", tz = "UTC"), "%H:%M:%S"),
+    mediana = format(as.POSIXct(median(ride_length_segundos, na.rm = TRUE), origin = "1970-01-01", tz = "UTC"), "%H:%M:%S"),
+    moda = format(as.POSIXct(as.numeric(names(which.max(table(ride_length_segundos))))), "%H:%M:%S"),
+    desviacion_estandar = format(as.POSIXct(sd(ride_length_segundos, na.rm = TRUE), origin = "1970-01-01", tz = "UTC"), "%H:%M:%S"),
+    varianza = format(as.POSIXct(var(ride_length_segundos, na.rm = TRUE), origin = "1970-01-01", tz = "UTC"), "%H:%M:%S"),
+    rango = difftime(max(ride_length_segundos, na.rm = TRUE), min(ride_length_segundos, na.rm = TRUE))
+  )
+
+# Mostrar el dataframe con las estadísticas descriptivas
+print(analisis_ride_length)
+
+```
+En este informe se extrae que la comparativa general de estadistica descriptiva de nuestras variables clave, observamos que las tendencias son a que el cliente casual suele usar las bicicletas por mayor tiempo, y varia menos la duración de las mismas, ambas recorren el mismo rango, de 0 hasta 24hrs. Esto nos ayuda a intepretar los próximos gráficos
+
+
+
+### Compartir 
+
+```{r}
+library(ggplot2)
+library(scales)
+# Definir colores personalizados
+colores_personalizados <- c("#185ADB", "#FFC947")
+
+# creación de gráfico de barras
+ggplot(conteo_totales, aes(x = member_casual, y = Total, fill = member_casual)) +
+  geom_bar(stat = "identity", width = 0.7, position = position_dodge(width = 0.8)) +
+  labs(title = "Gráfico de Barras - Conteo Totales", fill = "Tipo de Miembro") +
+  scale_fill_manual(values = colores_personalizados) +  
+  theme_minimal() +
+  theme(axis.text = element_text(size = 12),  # ajuste de tamaño del texto del eje x
+        axis.title = element_blank(),
+        panel.grid = element_blank()) +
+  geom_text(aes(label = comma(Total)),
+            position = position_dodge(width = 0.8),
+            vjust = -0.5, size = 4) +  # mostrar el total en cada barra
+  scale_y_continuous(labels = scales::comma_format(scale = 1))  # cambio de formato del eje y
+```
+Se observa como los clientes con membresía tienen una mayor cantidad de viajes a lo largo del año, superiormente al de los clientes casuales, que son de alrededor 2 millones
+
+```{r}
+
+library(ggplot2)
+
+# creación de gráfico de pastel con colores personalizados y etiquetas de porcentaje
+ggplot(conteo_totales, aes(x = "", y = Total, fill = member_casual)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar(theta = "y") +
+  labs(title = "Gráfico de Pastel - Conteo Totales", fill = "Tipo de Miembro") +
+  scale_fill_manual(values = colores_personalizados) +  
+  theme_minimal() +
+  theme(axis.text = element_blank(),
+        axis.title = element_blank(),
+        panel.grid = element_blank()) +
+  geom_text(aes(label = paste0(round(Total / sum(Total) * 100), "%")),
+            position = position_stack(vjust = 0.5))
+```
+
+Los clientes miembros representan el 64% de los viajes totales del año, una amplia superioridad que nos indicará como se comportaran los próximos gráficos
+
+```{r}
+
+library(ggplot2)
+
+# redefinir colores personalizados
+colores_personalizados <- c("#185ADB", "#FFC947", "#0A1931")
+
+# creación gráfico de barras con etiquetas de cantidad y colores personalizados
+ggplot(conteo_bikes, aes(x = rideable_type, y = Total, fill = rideable_type)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = comma(Total)), vjust = -0.5, color = "black", size = 3) +
+  labs(title = "Gráfico de Barras - Conteo de Bicicletas",
+       x = "Tipo de Bicicleta",
+       y = "Cantidad") +
+  scale_fill_manual(values = colores_personalizados) +  
+  scale_y_continuous(labels = scales::comma_format(scale = 1e3)) +  # cambio de notación del eje y
+  theme_minimal()
+
+
+```
+
+Por su parte, en cuanto a tipo de bicicletas usadas, observamos que tanto classic bike y electric se mantienen con un margen parecido, mientras que docked_bike se queda muy por debajo en el uso general
+
+```{r}
+library(ggplot2)
+
+# Crear un dataframe con los datos proporcionados
+df <- conteo_bikes_user
+
+# dataframe a formato largo
+df_long <- tidyr::gather(df, key = "member_casual", value = "conteo", -rideable_type)
+
+# creación de gráfico de barras dobles
+ggplot(df_long, aes(x = rideable_type, y = conteo, fill = member_casual)) +
+  geom_col(position = "dodge", width = 0.8) +
+  geom_text(aes(label = comma(conteo)), position = position_dodge(width = 0.8), vjust = -0.5, size = 3) +  # Etiquetas
+  labs(title = "Frecuencia de uso del tipo de bicicleta") +
+  scale_fill_manual(values = c("casual" = "#185ADB", "member" = "#FFC947")) +  # Colores personalizados
+  theme_minimal() +
+  scale_y_continuous(labels = function(x) format(x, scientific = FALSE))
+```
+
+Comenzando con la comparativa casual vs miembro en el uso del producto, vemos que por volumen de datos el cliente miembro se lleva la mayoría de los registros en classic y electric bike, por otro lado, vemos que los miembros casuales son los principales consumidores de la bicicleta tipo docked
+
+```{r}
+library(ggplot2)
+
+conteo_month_user$month <- factor(conteo_month_user$month, levels = c("enero", "febrero", "marzo", "abril", "mayo", "junio", "julio","agosto","septiembre","octubre","noviembre","diciembre"))
+
+# creación de un dataframe con los datos proporcionados
+df <- conteo_month_user
+
+# transformar el dataframe a formato largo
+df_long <- tidyr::gather(df, key = "member_casual", value = "conteo", -month)
+
+# creación de el gráfico de barras dobles
+ggplot(df_long, aes(x = month, y = conteo, fill = member_casual)) +
+  geom_col(position = "dodge", width = 0.8) +
+  geom_text(aes(label = comma(conteo)), position = position_dodge(width = 0.8), vjust = -0.5, size = 3) +  # Etiquetas
+  labs(title = "Frecuencia clientes por mes") +
+  scale_fill_manual(values = c("casual" = "#185ADB", "member" = "#FFC947")) +  # Colores personalizados
+  theme_minimal() +
+  scale_y_continuous(labels = function(x) format(x, scientific = FALSE)) + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+Se aprecia que la distribución por meses se tiene que el periodo más alto de uso es durante los meses de mayo a agosto, en verano 
+
+
+```{r}
+conteo_day_user$day_of_week <- factor(conteo_day_user$day_of_week, levels = c("lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"))
+
+# creación de  dataframe con los datos proporcionados
+df <- conteo_day_user
+
+# Transformar el dataframe a formato largo
+df_long <- tidyr::gather(df, key = "member_casual", value = "conteo", -day_of_week)
+
+# Crear el gráfico de barras dobles
+ggplot(df_long, aes(x = day_of_week, y = conteo, fill = member_casual)) +
+  geom_col(position = "dodge", width = 0.8) +
+  geom_text(aes(label = comma(conteo)), position = position_dodge(width = 0.8), vjust = -0.5, size = 3) +  # Etiquetas
+  labs(title = "Frecuencia clientes por día de la semana") +
+  scale_fill_manual(values = c("casual" = "#185ADB", "member" = "#FFC947")) +  # Colores personalizados
+  theme_minimal() +
+  scale_y_continuous(labels = function(x) format(x, scientific = FALSE))
+```
+Observando los datos recopilados por día, podemos observar que para cliente miembro tiene como día con más registros el día jueves, mientras que los días sábado se encuentra más alto para clientes casuales
+
+```{r}
+library(ggplot2)
+library(scales)
+
+# Columna 'conteo_range' tipo factor para mantener el orden en el gráfico
+conteos_por_rango_p$conteo_range <- factor(conteos_por_rango_p$conteo_range, levels = unique(conteos_por_rango_p$conteo_range))
+
+# creación del gráfico de líneas
+grafico_lineas <- ggplot(conteos_por_rango_p, aes(x = conteo_range)) +
+  geom_line(aes(y = conteo_member, group = 1, color = "Miembro"), size = 1, linetype = "solid") +
+  geom_line(aes(y = conteo_casual, group = 1, color = "Casual"), size = 1, linetype = "dashed") +
+  geom_text(aes(x = conteo_range, y = conteo_member, label = comma(conteo_member)), vjust = -0.5, size = 3) +
+  geom_text(aes(x = conteo_range, y = conteo_casual, label = comma(conteo_casual)), vjust = 1, size = 3) +
+  labs(title = "Conteos por Rango de Hora y Tipo de Miembro",
+       x = "Rango de Hora",
+       y = "Conteo",
+       color = "Tipo de Miembro") +
+  scale_color_manual(values = c("Miembro" = "#FFC947", "Casual" = "#185ADB")) +
+  scale_x_discrete(labels = function(x) paste0(as.character(x), " HRS")) +  # Cambiar las etiquetas del eje x
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 75, hjust = 1, size=10))
+
+
+print(grafico_lineas)
+```
+
+A lo largo de año se puede ver las horas de preferencia para iniciar un viaje, ambos tipos de cliente tienen un comportamiento parecido a lo largo del día, 16 a 20 h suelen ser los horarios preferidos para ambos, es una línea de similar en cuento a picos de uso durante horas del día.
+
+
+```{r}
+library(ggplot2)
+library(scales)
+
+conteos_por_rango_m$conteo_range <- factor(conteos_por_rango_m$conteo_range, levels = unique(conteos_por_rango_m$conteo_range))
+
+# creación del gráfico de líneas
+grafico_lineas <- ggplot(conteos_por_rango_m, aes(x = conteo_range)) +
+  geom_line(aes(y = conteo_member, group = 1, color = "Miembro"), size = 1, linetype = "solid") +
+  geom_line(aes(y = conteo_casual, group = 1, color = "Casual"), size = 1, linetype = "dashed") +
+  geom_text(aes(x = conteo_range, y = conteo_member, label = comma(conteo_member)), vjust = -0.5, size = 2) +
+  geom_text(aes(x = conteo_range, y = conteo_casual, label = comma(conteo_casual)), vjust = 1, size = 2) +
+  labs(title = "Afluencia por HR, Agosto(Lunes a Viernes)",
+       x = "Horas del día",
+       y = "Conteo",
+       color = "Tipo de Miembro") +
+  scale_color_manual(values = c("Miembro" = "#FFC947", "Casual" = "#185ADB")) +
+  scale_x_discrete(labels = function(x) paste0(as.character(x), " HRS")) +  # Cambiar las etiquetas del eje x
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 75, hjust = 1, size=7))
+
+print(grafico_lineas)
+
+```
+
+Con fin de desglosar la cantidad de afluencia , se toma el mes con la mayor concentración de afluencia de lunes a viernes, verificando que los clientes con membresía suelen tener un pico de uso desde las 7 a 9 hrs del día y por la tarde, de 16 a 18 hrs, encontrando diferencia con los clientes casuales que tienden a ir creciendo durante el día.
+
+
+```{r}
+library(ggplot2)
+library(scales)
+library(lubridate)
+
+
+promedios_duracion_d$month <- factor(promedios_duracion_d$month, levels = c("enero", "febrero", "marzo", "abril", "mayo", "junio", "julio","agosto","septiembre","octubre","noviembre","diciembre"))
+
+# creación de  gráfico de líneas con puntos y líneas conectadas
+grafico_lineas <- ggplot(promedios_duracion_d, aes(x = month)) +
+  geom_line(aes(y = member, group = 1, color = "Member"), size = 1, linetype = "solid") +
+  geom_point(aes(y = member, color = "Member"), size = 3) +
+  geom_line(aes(y = casual, group = 1, color = "Casual"), size = 1, linetype = "dashed") +
+  geom_point(aes(y = casual, color = "Casual"), size = 3) +
+  geom_text(aes(y = member, label = scales::time_format("%H:%M:%S")(member)), vjust = -0.5, size = 3) +
+  geom_text(aes(y = casual, label = scales::time_format("%H:%M:%S")(casual)), vjust = 1, size = 3) +
+  labs(title = "Promedio Mensual de Duración de Viaje por Tipo de Cliente",
+       x = "Mes",
+       y = "Duración de Viaje Promedio") +
+  scale_color_manual(values = c("Member" = "#FFC947", "Casual" = "#185ADB")) +
+  scale_y_time(labels = scales::time_format("%H:%M:%S")) +  # Ajuste de escala en el eje y
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+print(grafico_lineas)
+```
+Ahora, en el presente gráfico de líneas se puede visualizar un cambio en la duración promedio de viajes a lo largo del año, se aprecia que los clientes casuales suelen tener viajes más largos a diferencia que los clientes miembros a lo largo del año. El pico de duración de uso se ve reflejado por las épocas de verano para ambos.
+
+```{r}
+
+library(ggplot2)
+library(scales)
+library(lubridate)
+
+# orden del dataframe
+promedios_duracion_day$day_of_week <- factor(promedios_duracion_day$day_of_week, levels = c("lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"))
+
+# creación de  gráfico de líneas con puntos y líneas conectadas
+grafico_lineas_days <- ggplot(promedios_duracion_day, aes(x = day_of_week)) +
+  geom_line(aes(y = member, group = 1, color = "Member"), size = 1, linetype = "solid") +
+  geom_point(aes(y = member, color = "Member"), size = 3) +
+  geom_line(aes(y = casual, group = 1, color = "Casual"), size = 1, linetype = "dashed") +
+  geom_point(aes(y = casual, color = "Casual"), size = 3) +
+  geom_text(aes(y = member, label = scales::time_format("%H:%M:%S")(member)), vjust = -0.5, size = 3) +
+  geom_text(aes(y = casual, label = scales::time_format("%H:%M:%S")(casual)), vjust = 1, size = 3) +
+  labs(title = "Promedio diario de Duración de Viaje por Tipo de Cliente",
+       x = "Día de la Semana",
+       y = "Duración de Viaje Promedio") +
+  scale_color_manual(values = c("Member" = "#FFC947", "Casual" = "#185ADB")) +
+  scale_y_time(labels = scales::time_format("%H:%M:%S")) +  # Ajuste de escala en el eje y
+  theme_minimal()
+
+print(grafico_lineas_days)
+
+
+```
+Así mismo, también por los días de la semana, los clientes casuales suelen usar casi el doble de tiempo que los clientes miembros. 
+
+```{r}
+library(ggplot2)
+
+# Crear un dataframe con los datos proporcionados
+df <- conteos_por_rango
+
+# Transformar el dataframe a formato largo
+df_long <- tidyr::gather(df, key = "member_casual", value = "conteo", -conteo_range)
+
+# Crear el gráfico de barras dobles
+ggplot(df_long, aes(x = conteo_range, y = conteo, fill = member_casual)) +
+  geom_col(position = "dodge", width = 0.8) +
+  geom_text(aes(label = comma(conteo)), position = position_dodge(width = 0.8), vjust = -0.5, size = 3) +  # Etiquetas
+  labs(title = "Distribuición de duración de viaje ") +
+  scale_fill_manual(values = c("conteo_casual" = "#185ADB", "conteo_member" = "#FFC947")) +  # Colores personalizados
+  theme_minimal() +
+  scale_y_continuous(labels = function(x) format(x, scientific = FALSE))
+```
+**Resumen**
+
+
+Revisando la distribución de tiempo, hemos denotado que los clientes casuales,  a pesar de ser menos del 40% de los viajes, llegan a abarcar gran cantidad de los viajes más largos, superiores a 20 min y a una hora, recordando que el rango abarca desde las 0 a hasta las 24 h de uso.
+
+Respondiendo a la pregunta general, se logró encontrar diferencias puntuales sobre los clientes casuales y los clientes miembros de la aplicación, resaltando los siguientes hallazgos:
+
+**Conclusiones para clientes casuales**
+
+● Suelen usar más tiempo las bicicletas
+
+● Son el principal Mercado para las docked bike
+
+● Sus viajes duran más tiempo en verano
+
+● Tienen preferencia de uso en fines de semana
+
+● Su afluencia durante el día crece teniendo un pico máximo en las tardes
+
+
+
+**Conclusiones de clientes con membresia **
+
+● Mantienen un comportamiento de uso homogéneo a la media durante todo el año
+
+● Los clientes de membresía no usan las bicicletas docked
+
+● Usan la bicicleta por periodos más cortos
+
+● Su afluencia mayor se encuentra por la mañana y por la tarde
+
+
+
+**¿De qué manera tus hallazgos se relacionan con tu pregunta original?**
+
+En síntesis, los puntos mencionados anteriormente reflejan una diferencia notoria entre el comportamiento de uso entre los usuarios casuales y los miembros. **Los usuarios miembros tienen a tener un perfil de personas que usan las bicicletas solo como medio de transporte al trabajo**, mientras que **los usuarios casuales tienen un perfil orientado al esparcimiento**
+
+
+### Actuar 
+
+
+**¿Cuál es tu conclusión en función de tu análisis? **
+
+
+
+Se puede concluir que el análisis presentado encaja perfectamente con la cuestión inicial, ya que se pudieron encontrar diferencias notorias entre los dos tipos de cliente, se encontró un perfil distinto para ambos con la ayuda de las gráficas y estadísticas calculadas. Se considera que información muy valiosa para las partes interesadas, pues, denota visualmente los comportamientos del usuario al que se quiere dirigir una propuesta de venta. 
+
+
+
+**¿Cómo podrían tu equipo y tu empresa aplicar tus conclusiones?**
+
+- Se podría hacer publicidad a los clientes  casuales que recalquen las bondades de usar la bicicleta para ir al trabajo
+
+- Aplicar promociones durante los fines de semana con tarifas de cliente miembro y puedan probar el servicio de membresía
+
+- Tratar de enganchar a los clientes que tienden a usar docked bike, promociones para ese tipo de bicicleta. 
+
+- Aplicar promociones para casuales en épocas de mayor afluencia, en verano, aprovechando la cantidad de gente que usan las bicicletas
+
+**¿Qué próximos pasos tú o los interesados podrían adoptar en función de tus hallazgos?**
+
+Para llevar un mayor control de los indicadores anteriormente mencionados, se podría estar generando un reporte mensual o dashboard que ayude a verificar como van los indicadores de cada mes.
+
+
+**¿Existen datos adicionales que podrías utilizar para ampliar tus hallazgos?**
+
+Probablemente, la edad y el género, podrían ayudar a saber más sobre el perfil de cliente más preciso, saber si la edad importa en la afluencia de cierto tipo de cliente o si un género tiene más preferencia por bicicletas que el otro, etc. 
+
+</div>
